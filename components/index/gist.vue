@@ -1,20 +1,24 @@
 <template>
   <div class="svgCont">
-    <v-layout row wrap id="gistContent">
-      <v-flex xs6 pa-3 mt-5 class="c1" text-xs-center>
+    <v-layout id="gistContent" row wrap>
+      <v-flex xs6 pa-3 class="c1" text-xs-center>
         <h1>Wann <b>läuft</b> was?</h1>
 
         <svg height="60%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <!-- <circle cx="50" cy="50" r="45" fill="green" /> -->
+
           <g transform="translate(50 50)">
             <path
+              class="detail"
               d="M 0 0 L 50 0 A 50 50 0 0 0 43.30127018922194 -24.999999999999996 L 0 0"
             />
             <path
+              class="detail"
               d="M 0 0 L 50 0 A 50 50 0 0 0 43.30127018922194 -24.999999999999996 L 0 0"
               transform="rotate(-30)"
             />
             <path
+              class="detail"
               d="M 0 0 L 50 0 A 50 50 0 0 0 43.30127018922194 -24.999999999999996 L 0 0"
               transform="rotate(-60)"
             />
@@ -22,41 +26,73 @@
             <circle id="innerRest" cx="0" cy="0" r="40" fill="lime" />
 
             <path
-              id="cir_S2"
               class="inactive"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(90)"
             />
 
             <path
-              id="cir_S3"
               class="inactive"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(180)"
             />
 
-            <circle cx="0" cy="0" r="35" fill="lime" />
-
-            <rect id="rec_S4" x="-50" y="-50" @mouseover="season = 4" />
-            <rect id="rec_S3" x="-50" y="0" @mouseover="season = 3" />
-            <rect id="rec_S2" x="0" y="0" @mouseover="season = 2" />
-
             <path
-              id="cir_S4"
               class="inactive"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(-90)"
             />
-          </g>
 
-          <text x="50" y="50" text-anchor="middle">Season {{ season }}</text>
+            <circle cx="0" cy="0" r="35" fill="lime" />
+
+            <path
+              class="activator"
+              d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
+              transform="rotate(90)"
+              @mouseover="
+                season = 2
+                subText = 'Ab 12.05.2019'
+              "
+            />
+
+            <path
+              class="activator"
+              d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
+              transform="rotate(180)"
+              @mouseover="
+                season = 3
+                subText = 'Ab 06.09.2019'
+              "
+            />
+
+            <path
+              class="activator"
+              d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
+              transform="rotate(-90)"
+              @mouseover="
+                season = 4
+                subText = 'Ab 02.01.2020'
+              "
+            />
+
+            <text x="0" y="0" text-anchor="middle">Season {{ season }}</text>
+            <text id="subText" x="0" y="6" text-anchor="middle">
+              {{ subText }}
+            </text>
+          </g>
         </svg>
       </v-flex>
-      <v-flex xs6 pa-3 mt-3>
-        <h1>Hii</h1>
-        <h1>Hii</h1>
-        <h1>Hii</h1>
-        <h1>Hii</h1>
+
+      <v-flex xs4 offset-xs1 pa-3 mt-5 class="liveTicker">
+        <h1 id="lt_h1">Die Folge mit</h1>
+        <h1 id="lt_h2">Sandro's Aufgabe</h1>
+        <h1 id="lt_h3">kommt in</h1>
+        <h1 id="lt_h4">70<span>H</span>:30<span>M</span></h1>
+        <br />
+        <br />
+        <h1 id="lt_h5">KEINE LUST</h1>
+        <h1 id="lt_h6">zu warten?!</h1>
+        <h1 id="lt_h7">>> Guck dir jetzt die letzte Folge an</h1>
       </v-flex>
     </v-layout>
     <svg
@@ -68,7 +104,7 @@
       <defs>
         <filter id="f1" width="200%" height="200%">
           <feOffset result="offOut" in="SourceAlpha" dx="0" dy="0" />
-          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0.1" />
+          <feGaussianBlur result="blurOut" in="offOut" stdDeviation="0" />
           <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
         </filter>
       </defs>
@@ -92,20 +128,69 @@
 export default {
   data() {
     return {
-      season: 0
+      season: 2,
+      subText: 'Ab 12.05.2019'
     }
   }
 }
 </script>
 
 <style scoped>
+.liveTicker h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42pt;
+  color: lime;
+  line-height: 1.05;
+}
+
+#lt_h1 {
+  font-weight: 400;
+}
+
+#lt_h2 {
+  font-weight: 700;
+}
+
+#lt_h3 {
+  font-weight: 400;
+  font-style: italic;
+}
+
+#lt_h4 {
+  font-weight: 900;
+  font-style: italic;
+}
+
+#lt_h4 span {
+  vertical-align: super;
+  font-size: 25pt;
+  padding-left: 4px;
+}
+
+#lt_h5 {
+  font-weight: 700;
+  line-height: 1;
+}
+
+#lt_h6 {
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+}
+
+#lt_h7 {
+  font-weight: 400;
+  font-style: italic;
+  line-height: 0.9;
+}
+
 .svgCont {
   margin-top: 30%;
   width: 100%;
 }
 
 #gistContent {
-  margin-top: 50px;
+  margin-top: 80px;
   width: 100%;
   position: absolute;
 }
@@ -119,21 +204,33 @@ export default {
   /* transform: rotate(2deg); */
 }
 
-path {
+path.detail {
   cursor: pointer;
   transition: all 100ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  stroke-width: 2;
+  stroke-width: 0.8;
   stroke: lime;
   fill: #085308;
 }
 
-path.inactive {
-  stroke-width: 1;
-  fill: green;
+path.detail:hover {
+  fill: #003f00;
 }
 
-path:hover {
-  fill: #003f00;
+path.inactive {
+  fill: green;
+  stroke: green;
+}
+
+path.activator {
+  transition: all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  fill: rgba(0, 0, 0, 0);
+  stroke-width: 0;
+  stroke: lime;
+}
+
+path.activator:hover {
+  fill: rgba(0, 0, 0, 0.2);
+  stroke-width: 1;
 }
 
 #innerRest {
@@ -151,21 +248,14 @@ text {
   font-family: 'Permanent Marker', cursive;
 }
 
+#subText {
+  font-size: 5pt;
+  font-family: 'Permanent Marker', cursive;
+}
+
 rect {
   width: 50px;
   height: 50px;
   fill: rgba(0, 0, 0, 0);
-}
-
-#cir_S2,
-#cir_S3,
-#cir_S4 {
-  transition: all 400ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-#rec_S2:hover ~ #cir_S2,
-#rec_S3:hover ~ #cir_S3,
-#rec_S4:hover ~ #cir_S4 {
-  fill: #003f00;
 }
 </style>
