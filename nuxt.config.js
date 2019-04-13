@@ -20,12 +20,12 @@ export default {
         rel: 'stylesheet',
         href:
           'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
-      },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Montserrat:400,700,900|Permanent+Marker'
       }
+      // {
+      //   rel: 'stylesheet',
+      //   href:
+      //     'https://fonts.googleapis.com/css?family=Montserrat:400,700,900|Permanent+Marker'
+      // }
     ]
   },
 
@@ -38,7 +38,7 @@ export default {
    ** Global CSS
    , '~/assets/scss/master.scss'
    */
-  css: ['~/assets/style/app.styl'],
+  css: ['~/assets/style/app.styl', '~/assets/scss/master.scss'],
 
   /*
    ** Plugins to load before mounting the App
@@ -48,9 +48,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['nuxt-sass-resources-loader'],
-
-  sassResources: ['~/assets/scss/master.scss'],
+  modules: [],
 
   /*
    ** Build configuration

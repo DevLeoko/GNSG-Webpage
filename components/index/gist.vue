@@ -23,7 +23,7 @@
               transform="rotate(-60)"
             />
 
-            <circle id="innerRest" cx="0" cy="0" r="40" fill="lime" />
+            <circle id="innerRest" cx="0" cy="0" r="40" fill="#323232" />
 
             <path
               class="inactive"
@@ -43,7 +43,7 @@
               transform="rotate(-90)"
             />
 
-            <circle cx="0" cy="0" r="35" fill="lime" />
+            <circle cx="0" cy="0" r="35" fill="#323232" />
 
             <path
               class="activator"
@@ -111,12 +111,12 @@
 
       <polygon
         points="45,8 100,10 100,105 50,85"
-        style="fill:green;"
+        style="fill:#30e953;"
         filter="url(#f1)"
       />
       <polygon
         points="0,5 49,11 54,95 0,105"
-        style="fill:lime;"
+        style="fill:#323232;"
         filter="url(#f1)"
       />
       Sorry, your browser does not support inline SVG.
@@ -139,7 +139,7 @@ export default {
 .liveTicker h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 42pt;
-  color: lime;
+  color: white;
   line-height: 1.05;
 }
 
@@ -200,7 +200,7 @@ export default {
   font-weight: normal;
   font-size: 45pt;
   text-align: center;
-  color: #085308;
+  color: white;
   /* transform: rotate(2deg); */
 }
 
@@ -208,29 +208,30 @@ path.detail {
   cursor: pointer;
   transition: all 100ms cubic-bezier(0.075, 0.82, 0.165, 1);
   stroke-width: 0.8;
-  stroke: lime;
-  fill: #085308;
+  stroke: #323232;
+  fill: #0fb244;
 }
 
 path.detail:hover {
-  fill: #003f00;
+  fill: #0b993a;
 }
 
 path.inactive {
-  fill: green;
-  stroke: green;
+  fill: #30e953;
+  stroke: #30e953;
 }
 
 path.activator {
-  transition: all 600ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: all 600ms ease-out;
   fill: rgba(0, 0, 0, 0);
   stroke-width: 0;
-  stroke: lime;
+  stroke: #30e953;
 }
 
 path.activator:hover {
-  fill: rgba(0, 0, 0, 0.2);
-  stroke-width: 1;
+  /* fill: rgba(0, 0, 0, 0.2); */
+  fill: rgba(48, 233, 82, 0.1);
+  stroke-width: 0.5;
 }
 
 #innerRest {
@@ -243,7 +244,7 @@ path:hover ~ #innerRest {
 
 text {
   /* vertical-align: middle; */
-  fill: #085308;
+  fill: white;
   font-size: 8pt;
   font-family: 'Permanent Marker', cursive;
 }
