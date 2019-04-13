@@ -121,6 +121,12 @@
       />
       Sorry, your browser does not support inline SVG.
     </svg>
+
+    <style>
+      #gistContent path:hover ~ #innerRest {
+        r: 35px;
+      }
+    </style>
   </div>
 </template>
 
@@ -236,10 +242,6 @@ path.activator:hover {
 
 #innerRest {
   transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
-}
-
-path:hover ~ #innerRest {
-  r: 35px;
 }
 
 text {
