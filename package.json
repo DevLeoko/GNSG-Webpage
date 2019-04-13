@@ -16,7 +16,8 @@
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
     "vuetify": "^1.5.5",
-    "vuetify-loader": "^1.2.1"
+    "vuetify-loader": "^1.2.1",
+    "sass-loader": "^7.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^0.0.1",
@@ -36,7 +37,6 @@
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.9",
     "prettier": "^1.16.4",
-    "sass-loader": "^7.1.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2"
   }
