@@ -7,20 +7,26 @@
         <svg height="60%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <!-- <circle cx="50" cy="50" r="45" fill="green" /> -->
 
-          <g transform="translate(50 50)">
+          <g transform="translate(50 50)" @mouseleave="hud = defaultHud">
             <path
               class="detail"
               d="M 0 0 L 50 0 A 50 50 0 0 0 43.30127018922194 -24.999999999999996 L 0 0"
+              :style="{ fill: hud.month == 2 ? '#317b3f' : undefined }"
+              @mouseover="hud = { month: 2, text: 'Juli' }"
             />
             <path
               class="detail"
               d="M 0 0 L 50 0 A 50 50 0 0 0 43.30127018922194 -24.999999999999996 L 0 0"
               transform="rotate(-30)"
+              :style="{ fill: hud.month == 1 ? '#317b3f' : undefined }"
+              @mouseover="hud = { month: 1, text: 'Juni' }"
             />
             <path
               class="detail"
               d="M 0 0 L 50 0 A 50 50 0 0 0 43.30127018922194 -24.999999999999996 L 0 0"
               transform="rotate(-60)"
+              :style="{ fill: hud.month == 0 ? '#317b3f' : undefined }"
+              @mouseover="hud = { month: 0, text: 'Mai' }"
             />
 
             <circle id="innerRest" cx="0" cy="0" r="40" fill="#323232" />
@@ -49,36 +55,67 @@
               class="activator"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(90)"
-              @mouseover="
-                season = 2
-                subText = 'Ab 12.05.2019'
-              "
+              @mouseover="hud = { text: 'Season 2', subText: 'Ab 12.05.2019' }"
             />
 
             <path
               class="activator"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(180)"
-              @mouseover="
-                season = 3
-                subText = 'Ab 06.09.2019'
-              "
+              @mouseover="hud = { text: 'Season 3', subText: 'Ab 06.09.2019' }"
             />
 
             <path
               class="activator"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(-90)"
-              @mouseover="
-                season = 4
-                subText = 'Ab 02.01.2020'
-              "
+              @mouseover="hud = { text: 'Season 4', subText: 'Ab 02.01.2020' }"
             />
 
-            <text x="0" y="0" text-anchor="middle">Season {{ season }}</text>
+            <text x="0" y="0" text-anchor="middle">{{ hud.text }}</text>
             <text id="subText" x="0" y="6" text-anchor="middle">
-              {{ subText }}
+              {{ hud.subText }}
             </text>
+
+            <g v-if="hud.month !== undefined">
+              <rect x="-23" y="-18" width="46" height="6" rx="3" ry="3" />
+
+              <circle
+                class="dateActivator"
+                cx="-20"
+                cy="-15"
+                r="3"
+                @mouseover="selectDate(0)"
+              />
+              <circle
+                class="dateActivator"
+                cx="-10"
+                cy="-15"
+                r="3"
+                @mouseover="selectDate(1)"
+              />
+              <circle
+                class="dateActivator"
+                cx="0"
+                cy="-15"
+                r="3"
+                @mouseover="selectDate(2)"
+              />
+              <circle
+                class="dateActivator"
+                cx="10"
+                cy="-15"
+                r="3"
+                @mouseover="selectDate(3)"
+              />
+              <circle
+                class="dateActivator"
+                cx="20"
+                cy="-15"
+                r="3"
+                @mouseover="selectDate(4)"
+              />
+            </g>
           </g>
         </svg>
       </v-flex>
@@ -132,10 +169,31 @@
 
 <script>
 export default {
+  props: {
+    dates: {
+      type: Array,
+      required: true
+    }
+  },
+
   data() {
+    const defaultHud = { text: 'Season 1', subText: 'aktuell live' }
+
     return {
-      season: 2,
-      subText: 'Ab 12.05.2019'
+      hud: defaultHud,
+      defaultHud
+    }
+  },
+
+  methods: {
+    selectDate(date) {
+      const dateDetails = this.dates[this.hud.month * 5 + date]
+
+      this.hud = {
+        month: this.hud.month,
+        text: dateDetails.date.substring(0, 6),
+        subText: dateDetails.topic
+      }
     }
   }
 }
@@ -191,7 +249,6 @@ export default {
 }
 
 .svgCont {
-  margin-top: 30%;
   width: 100%;
 }
 
@@ -218,10 +275,6 @@ path.detail {
   fill: #0fb244;
 }
 
-path.detail:hover {
-  fill: #0b993a;
-}
-
 path.inactive {
   fill: #30e953;
   stroke: #30e953;
@@ -237,7 +290,22 @@ path.activator {
 path.activator:hover {
   /* fill: rgba(0, 0, 0, 0.2); */
   fill: rgba(48, 233, 82, 0.1);
-  stroke-width: 0.5;
+  /* stroke-width: 0.5; */
+}
+
+circle.dateActivator {
+  fill: #30e953;
+  transition: all 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+  stroke: #30e953;
+  stroke-width: 0;
+}
+
+rect {
+  fill: rgba(48, 233, 82, 0.4);
+}
+
+circle.dateActivator:hover {
+  stroke-width: 1;
 }
 
 #innerRest {
@@ -254,11 +322,5 @@ text {
 #subText {
   font-size: 5pt;
   font-family: 'Permanent Marker', cursive;
-}
-
-rect {
-  width: 50px;
-  height: 50px;
-  fill: rgba(0, 0, 0, 0);
 }
 </style>

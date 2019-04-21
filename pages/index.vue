@@ -1,13 +1,16 @@
 <template>
   <v-layout row wrap>
-    <v-flex xs12 style="z-index: -1;">
+    <v-flex xs12>
       <landing-video />
     </v-flex>
-    <v-flex xs12 style="z-index: 2;">
-      <gist />
+    <v-flex xs12 style="z-index: 2; margin-top: 30%;">
+      <gist :dates="dates" />
     </v-flex>
     <v-flex xs12 style="z-index: 1;">
       <intro />
+    </v-flex>
+    <v-flex xs12 style="z-index: 1;">
+      <landing-footer />
     </v-flex>
   </v-layout>
 </template>
@@ -16,9 +19,34 @@
 import LandingVideo from '~/components/index/video.vue'
 import Gist from '~/components/index/gist.vue'
 import Intro from '~/components/index/intro.vue'
+import LandingFooter from '~/components/index/footer.vue'
 
 export default {
-  components: { LandingVideo, Gist, Intro },
-  css: ['~assets/scss/pages/index.scss']
+  components: { LandingVideo, Gist, Intro, LandingFooter },
+  css: ['~assets/scss/pages/index.scss'],
+
+  data() {
+    return {
+      dates: [
+        { date: '04.05.2019', topic: "Sandro's Aufgabe" },
+        { date: '11.05.2019', topic: "Freddie's Aufgabe" },
+        { date: '15.05.2019', topic: 'Sandro VS Freddie' },
+        { date: '18.05.2019', topic: "Sandro's Aufgabe" },
+        { date: '25.05.2019', topic: "Freddie's Aufgabe" },
+
+        { date: '01.06.2019', topic: "Sandro's Aufgabe" },
+        { date: '08.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '15.06.2019', topic: 'Sandro VS Freddie' },
+        { date: '22.06.2019', topic: "Sandro's Aufgabe" },
+        { date: '29.06.2019', topic: "Freddie's Aufgabe" },
+
+        { date: '06.07.2019', topic: "Sandro's Aufgabe" },
+        { date: '13.07.2019', topic: "Freddie's Aufgabe" },
+        { date: '17.07.2019', topic: 'Sandro VS Freddie' },
+        { date: '20.07.2019', topic: "Sandro's Aufgabe" },
+        { date: '27.07.2019', topic: "Freddie's Aufgabe" }
+      ]
+    }
+  }
 }
 </script>
