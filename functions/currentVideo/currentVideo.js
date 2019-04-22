@@ -13,8 +13,6 @@ const REQUEST_PARAMS = querystring.stringify({
 const REQUEST_URL = `https://www.googleapis.com/youtube/v3/search?${REQUEST_PARAMS}`
 
 exports.handler = async function(event, context) {
-  console.log(REQUEST_URL)
-
   try {
     const response = await fetch(REQUEST_URL, {
       headers: { Accept: 'application/json' }
