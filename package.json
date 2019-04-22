@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "netlify functions:build -s ./functions && nuxt build",
+    "build": "nuxt build",
     "start": "nuxt",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
+    "node-fetch": "^2.3.0",
     "nuxt": "^2.4.0",
     "nuxt-sass-resources-loader": "^2.0.5",
     "sass-loader": "^7.1.0",
