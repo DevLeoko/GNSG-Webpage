@@ -1,5 +1,5 @@
 <template>
-  <v-layout row wrap green pa-3 px-5>
+  <v-layout row wrap class="myGreen" pa-3 px-5>
     <v-dialog v-model="policy" width="800">
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
@@ -521,10 +521,10 @@ export default {
   .flex {
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    color: #e9e9e9;
+    color: #555555;
 
     a {
-      color: #e9e9e9;
+      color: #555555;
       text-decoration: none;
       font-weight: 700;
     }
@@ -533,5 +533,9 @@ export default {
 
 .clickAble {
   cursor: pointer;
+}
+
+.myGreen {
+  background-color: #30e953;
 }
 </style>
