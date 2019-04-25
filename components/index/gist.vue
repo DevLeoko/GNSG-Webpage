@@ -1,10 +1,22 @@
 <template>
   <div class="svgCont">
-    <v-layout id="gistContent" row wrap>
-      <v-flex xs6 pa-3 class="c1" text-xs-center>
+    <v-layout
+      id="gistContent"
+      row
+      wrap
+      :class="!$vuetify.breakpoint.smAndDown || 'noAbsolute'"
+    >
+      <v-flex
+        xs12
+        md6
+        pa-3
+        class="c1"
+        text-xs-center
+        :class="!$vuetify.breakpoint.smAndDown || 'myGrey'"
+      >
         <h1>Wann <b>läuft</b> was?</h1>
 
-        <svg height="60%" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <svg class="infoSvg" viewBox="0 0 100 100" preserveAspectRatio="none">
           <!-- <circle cx="50" cy="50" r="45" fill="green" /> -->
 
           <g transform="translate(50 50)" @mouseleave="hud = defaultHud">
@@ -120,20 +132,37 @@
         </svg>
       </v-flex>
 
-      <v-flex xs4 offset-xs1 pa-3 mt-5 class="liveTicker">
+      <v-flex
+        xs12
+        md5
+        lg4
+        offset-md1
+        :pa-5="$vuetify.breakpoint.smAndDown"
+        :pa-3="!$vuetify.breakpoint.smAndDown"
+        :mt-5="!$vuetify.breakpoint.smAndDown"
+        class="liveTicker"
+        :class="!$vuetify.breakpoint.smAndDown || 'myGreen'"
+      >
         <h1 id="lt_h1">Die Folge mit</h1>
-        <h1 id="lt_h2">Sandro's Aufgabe</h1>
+        <h1 id="lt_h2">{{ topic }}</h1>
         <h1 id="lt_h3">kommt in</h1>
-        <h1 id="lt_h4">70<span>H</span>:30<span>M</span></h1>
+        <h1 id="lt_h4">
+          {{ hours }}<span>H</span>:{{ minutes }}<span>M</span>
+        </h1>
         <br />
         <br />
         <h1 id="lt_h5">KEINE LUST</h1>
         <h1 id="lt_h6">zu warten?!</h1>
-        <h1 id="lt_h7">>> Guck dir jetzt die letzte Folge an</h1>
+        <h1 id="lt_h7">
+          <a :href="`https://www.youtube.com/watch?v=${url}`" target="_blank"
+            >>> Guck dir jetzt die letzte Folge an</a
+          >
+        </h1>
       </v-flex>
     </v-layout>
     <svg
       height="900"
+      class="hidden-sm-and-down"
       width="100%"
       viewBox="0 0 100 110"
       preserveAspectRatio="none"
@@ -168,6 +197,7 @@
 </template>
 
 <script>
+import { setTimeout } from 'timers'
 export default {
   props: {
     dates: {
@@ -178,14 +208,41 @@ export default {
 
   data() {
     const defaultHud = { text: 'Season 1', subText: 'aktuell live' }
-
     return {
       hud: defaultHud,
-      defaultHud
+      defaultHud,
+      hours: '00',
+      minutes: '00',
+      topic: '---',
+      url: null
     }
   },
 
+  mounted() {
+    const cTime = new Date().getTime()
+    for (const entry of this.dates) {
+      const parts = entry.date.match(/(\d+)/g)
+      const date = new Date(parts[2], parts[1] - 1, parts[0], 18)
+      if (date.getTime() >= cTime) {
+        const remaining = date.getTime() - cTime
+        this.hours = Math.floor(remaining / 1000 / 60 / 60)
+        this.minutes = (Math.floor(remaining / 1000 / 60) % 60) + 1
+        this.topic = entry.topic
+        this.decreaseMinutes()
+        break
+      }
+    }
+
+    this.$axios.get('/.netlify/functions/currentVideo').then(response => {
+      this.url = response.data
+    })
+  },
+
   methods: {
+    decreaseMinutes() {
+      this.minutes = String(parseInt(this.minutes) - 1).padStart(2, '0')
+      setTimeout(this.decreaseMinutes, 1000 * 60)
+    },
     selectDate(date) {
       const dateDetails = this.dates[this.hud.month * 5 + date]
 
@@ -199,12 +256,30 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$breakpoint-sm: 960px;
+
 .liveTicker h1 {
   font-family: 'Montserrat', sans-serif;
   font-size: 42pt;
   color: white;
   line-height: 1.05;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 25pt;
+  }
+}
+
+.noAbsolute {
+  position: relative !important;
+}
+
+.infoSvg {
+  height: 60%;
+
+  @media (max-width: $breakpoint-sm) {
+    height: 70%;
+  }
 }
 
 #lt_h1 {
@@ -229,6 +304,10 @@ export default {
   vertical-align: super;
   font-size: 25pt;
   padding-left: 4px;
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 14pt;
+  }
 }
 
 #lt_h5 {
@@ -246,6 +325,15 @@ export default {
   font-weight: 400;
   font-style: italic;
   line-height: 0.9;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 20pt;
+  }
 }
 
 .svgCont {
@@ -256,6 +344,10 @@ export default {
   margin-top: 80px;
   width: 100%;
   position: absolute;
+
+  @media (max-width: $breakpoint-sm) {
+    margin-top: 0;
+  }
 }
 
 .c1 h1 {
@@ -264,7 +356,20 @@ export default {
   font-size: 45pt;
   text-align: center;
   color: white;
-  /* transform: rotate(2deg); */
+
+  @media (max-width: $breakpoint-sm) {
+    font-size: 30pt;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+}
+
+.myGrey {
+  background-color: #323232;
+}
+
+.myGreen {
+  background-color: #30e953;
 }
 
 path.detail {

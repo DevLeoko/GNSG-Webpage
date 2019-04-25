@@ -48,7 +48,24 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
+
+  /*
+   ** Axios config
+   */
+  axios: {
+    baseURL: '/'
+  },
+
+  /*
+   ** Proxy config
+   */
+  proxy: {
+    '/.netlify': {
+      target: 'http://localhost:9000',
+      pathRewrite: { '^/.netlify/functions': '' }
+    }
+  },
 
   /*
    ** Build configuration

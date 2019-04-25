@@ -3,7 +3,7 @@
     <v-flex xs12>
       <landing-video />
     </v-flex>
-    <v-flex xs12 style="z-index: 2; margin-top: 30%;">
+    <v-flex xs12 style="z-index: 2;" class="fixFixedBox">
       <gist :dates="dates" />
     </v-flex>
     <v-flex xs12 style="z-index: 1;">
@@ -50,3 +50,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+$breakpoint-sm: 960px;
+
+.fixFixedBox {
+  margin-top: 30%;
+
+  @media (max-width: $breakpoint-sm) {
+    margin-top: 70%;
+  }
+}
+</style>
