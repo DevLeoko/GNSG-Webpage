@@ -28,23 +28,23 @@ export default {
   data() {
     return {
       dates: [
-        { date: '04.05.2019', topic: "Sandro's Aufgabe" },
-        { date: '11.05.2019', topic: "Freddie's Aufgabe" },
+        { date: '04.05.2019', topic: "Freddie's Aufgabe" },
+        { date: '11.05.2019', topic: "Sandro's Aufgabe" },
         { date: '15.05.2019', topic: 'Sandro VS Freddie' },
-        { date: '18.05.2019', topic: "Sandro's Aufgabe" },
-        { date: '25.05.2019', topic: "Freddie's Aufgabe" },
+        { date: '18.05.2019', topic: "Freddie's Aufgabe" },
+        { date: '25.05.2019', topic: "Sandro's Aufgabe" },
 
-        { date: '01.06.2019', topic: "Sandro's Aufgabe" },
-        { date: '08.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '01.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '08.06.2019', topic: "Sandro's Aufgabe" },
         { date: '15.06.2019', topic: 'Sandro VS Freddie' },
-        { date: '22.06.2019', topic: "Sandro's Aufgabe" },
-        { date: '29.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '22.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '29.06.2019', topic: "Sandro's Aufgabe" },
 
-        { date: '06.07.2019', topic: "Sandro's Aufgabe" },
-        { date: '13.07.2019', topic: "Freddie's Aufgabe" },
+        { date: '06.07.2019', topic: "Freddie's Aufgabe" },
+        { date: '13.07.2019', topic: "Sandro's Aufgabe" },
         { date: '17.07.2019', topic: 'Sandro VS Freddie' },
-        { date: '20.07.2019', topic: "Sandro's Aufgabe" },
-        { date: '27.07.2019', topic: "Freddie's Aufgabe" }
+        { date: '20.07.2019', topic: "Freddie's Aufgabe" },
+        { date: '27.07.2019', topic: "Sandro's Aufgabe" }
       ]
     }
   }

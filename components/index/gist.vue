@@ -406,7 +406,7 @@ circle.dateActivator {
 }
 
 rect {
-  fill: rgba(48, 233, 82, 0.4);
+  fill: rgba(48, 233, 82, 0);
 }
 
 circle.dateActivator:hover {

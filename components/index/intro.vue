@@ -60,17 +60,15 @@
           </v-flex>
           <v-flex xs12 sm9>
             <p class="skrew1Rev">
-              <span>„</span>
-              Ach Freddi. Was gibt es über diesen Menschen zu sagen, was man
-              wissen sollte. Kennengelernt hab ich ihn als einen lustigen,
-              faulen und ziemlich dämlichen Fettsack. Er ist 18 Jahre alt und
-              hat sein Abitur mal so eben bestanden. Mit nem Tetrapack Wein nach
-              jeder Mathe Klausur und der Weißweinschorle in den Bars lies er
-              seinen alkoholischen Momenten gerne mal freien Lauf und verlor
-              dabei nie auch nur eine der oben erwähnten Eigenschaften. Wenn
-              mich jemand fragen würde, welche Note ich Freddi als Person geben
-              benoten, sonst hätte er kein Abitur in der Hand gehalten.
-              <span>“</span><br />
+              <span>„</span>Ach Freddi. Was gibt es über diesen Menschen zu
+              sagen, was man wissen sollte. Kennengelernt hab ich ihn als einen
+              lustigen, faulen und ziemlich dämlichen Fettsack. Da hat sich auch
+              nicht viel dran geändert. Er ist gerade 18 Jahre alt und hat sein
+              Abitur mal so eben bestanden. Mit nem Tetrapack Wein nach jeder
+              Mathe Klausur und der Weißweinschorle in den Bars lies er seinen
+              alkoholischen Momenten gerne mal freien Lauf und verlor dabei nie
+              auch nur eine der oben erwähnten Eigenschaften.<span>“</span
+              ><br />
               <i>(by Sandro)</i>
             </p>
           </v-flex>
@@ -94,21 +92,6 @@ export default {
 <style lang="scss" scoped>
 $breakpoint-sm: 960px;
 
-@media (max-width: $breakpoint-sm) {
-  h1 {
-    font-size: 50pt;
-  }
-
-  h2 {
-    font-size: 45pt;
-  }
-
-  p {
-    font-size: 16pt;
-    line-height: 1.3;
-  }
-}
-
 h1 {
   font-size: 50pt;
   font-family: 'Permanent Marker', cursive;
@@ -130,9 +113,24 @@ p span {
   font-family: 'Permanent Marker', cursive;
 }
 
+@media (max-width: $breakpoint-sm) {
+  h1 {
+    font-size: 45pt;
+  }
+
+  h2 {
+    font-size: 45pt;
+  }
+
+  p {
+    font-size: 15pt;
+    line-height: 1.3;
+  }
+}
+
 img {
   max-height: 800px;
-  margin-left: -150px;
+  margin-left: -180px;
 }
 
 img:hover {
