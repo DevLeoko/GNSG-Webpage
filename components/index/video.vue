@@ -15,12 +15,18 @@
               <img width="70%" src="~assets/graphics/logo.png" />
             </v-flex>
             <v-flex xs12 md6>
-              <v-btn outline color="#30e953"
+              <v-btn
+                outline
+                color="#30e953"
+                href="https://www.youtube.com/watch?v=jisdIinjKLM"
                 ><v-icon>play_arrow</v-icon> Trailer angucken</v-btn
               >
             </v-flex>
             <v-flex xs12 md6>
-              <v-btn outline color="#30e953"
+              <v-btn
+                outline
+                color="#30e953"
+                href="https://www.youtube.com/c/gnsg"
                 ><v-icon>ondemand_video</v-icon> &nbsp;Zum Kanal</v-btn
               >
             </v-flex>
