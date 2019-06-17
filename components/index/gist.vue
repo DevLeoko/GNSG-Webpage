@@ -67,21 +67,21 @@
               class="activator"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(90)"
-              @mouseover="hud = { text: 'Season 2', subText: 'Ab 12.05.2019' }"
+              @mouseover="hud = { text: 'Season 2', subText: 'Ab 03.08.2019' }"
             />
 
             <path
               class="activator"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(180)"
-              @mouseover="hud = { text: 'Season 3', subText: 'Ab 06.09.2019' }"
+              @mouseover="hud = { text: 'Season 3', subText: 'Ab 02.11.2019' }"
             />
 
             <path
               class="activator"
               d="M 0 0 L 45 0 A 45 45 0 0 0 2.7554552980815448e-15 -45 L 0 0"
               transform="rotate(-90)"
-              @mouseover="hud = { text: 'Season 4', subText: 'Ab 02.01.2020' }"
+              @mouseover="hud = { text: 'Season 4', subText: 'Ab 01.02.2020' }"
             />
 
             <text x="0" y="0" text-anchor="middle">{{ hud.text }}</text>

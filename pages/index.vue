@@ -34,10 +34,10 @@ export default {
         { date: '18.05.2019', topic: "Freddie's Aufgabe" },
         { date: '25.05.2019', topic: "Sandro's Aufgabe" },
 
-        { date: '01.06.2019', topic: "Freddie's Aufgabe" },
-        { date: '08.06.2019', topic: "Sandro's Aufgabe" },
-        { date: '15.06.2019', topic: 'Sandro VS Freddie' },
-        { date: '22.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '15.06.2019', topic: "Freddie's Aufgabe" },
+        { date: '19.06.2019', topic: "Sandro's Aufgabe" },
+        { date: '22.06.2019', topic: 'Sandro VS Freddie' },
+        { date: '26.06.2019', topic: "Freddie's Aufgabe" },
         { date: '29.06.2019', topic: "Sandro's Aufgabe" },
 
         { date: '06.07.2019', topic: "Freddie's Aufgabe" },

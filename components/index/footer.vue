@@ -1,6 +1,6 @@
 <template>
   <v-layout row wrap class="myGreen" pa-3 px-5>
-    <v-dialog v-model="policy" width="800">
+    <v-dialog v-model="policy" width="800" scrollable>
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           Datenschutzerklärung
@@ -391,7 +391,7 @@
       </v-card>
     </v-dialog>
 
-    <v-dialog v-model="impressum" width="800">
+    <v-dialog v-model="impressum" width="800" scrollable>
       <v-card>
         <v-card-title class="headline grey lighten-2" primary-title>
           Impressum
